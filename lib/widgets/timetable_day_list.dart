@@ -163,6 +163,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
       disciplineIds: disciplineIds,
       locationIds: locationIds,
       eblanIds: eblanIds,
+      groupId: selectedEntityType == 1 ? int.tryParse(selectedEntityId ?? '') : null,
     );
 
     // Filter lessons to the specific day (API might return broader range)

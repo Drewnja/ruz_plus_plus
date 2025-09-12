@@ -113,6 +113,7 @@ class ApiService {
     List<int>? disciplineIds,
     List<int>? locationIds,
     List<int>? eblanIds,
+    int? groupId,
   }) async {
     final endpoint = await baseUrl;
     final url = '$endpoint/getRUZ';
@@ -123,11 +124,12 @@ class ApiService {
         if (disciplineIds != null) 'disciplineIds': disciplineIds,
         if (locationIds != null) 'locationIds': locationIds,
         if (eblanIds != null) 'eblanIds': eblanIds,
+        if (groupId != null) 'groupId': groupId,
       },
     };
     
     developer.log('📅 API Request: POST $url');
-    developer.log('🎯 Filters applied - Disciplines: $disciplineIds, Locations: $locationIds, Eblans: $eblanIds');
+    developer.log('🎯 Filters applied - Disciplines: $disciplineIds, Locations: $locationIds, Eblans: $eblanIds, GroupId: $groupId');
     developer.log('📤 Request body: ${jsonEncode(requestBody)}');
     
     try {
