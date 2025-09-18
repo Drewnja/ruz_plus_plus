@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeekDaySelector extends StatefulWidget {
   const WeekDaySelector({
@@ -62,7 +63,16 @@ class WeekDaySelectorState extends State<WeekDaySelector> {
   }
   
   String _weekdayLabel(DateTime date) {
-    const List<String> shortWeekdays = <String>['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    final l10n = AppLocalizations.of(context)!;
+    final List<String> shortWeekdays = <String>[
+      l10n.monday,
+      l10n.tuesday,
+      l10n.wednesday,
+      l10n.thursday,
+      l10n.friday,
+      l10n.saturday,
+      l10n.sunday,
+    ];
     return shortWeekdays[date.weekday - 1];
   }
 

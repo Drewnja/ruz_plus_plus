@@ -1,0 +1,213 @@
+{
+  "@@locale": "zh",
+  "appTitle": "RUZ++",
+  "@appTitle": {
+    "description": "Enchanced RUZ timetable with filters."
+  },
+  "timetable": "课程表",
+  "@timetable": {
+    "description": "Timetable tab name"
+  },
+  "settings": "设置",
+  "@settings": {
+    "description": "Settings tab name"
+  },
+  "noGroupSelected": "未选择组",
+  "@noGroupSelected": {
+    "description": "Title shown when no group is selected"
+  },
+  "noGroupSelectedDescription": "请在设置中选择一个组以查看您的课程表",
+  "@noGroupSelectedDescription": {
+    "description": "Description shown when no group is selected"
+  },
+  "goToSettings": "前往设置",
+  "@goToSettings": {
+    "description": "Button text to navigate to settings"
+  },
+  "noLessonsForThisDay": "今天没有课程",
+  "@noLessonsForThisDay": {
+    "description": "Message shown when there are no lessons for the selected day"
+  },
+  "retry": "重试",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "returnToToday": "返回今天",
+  "@returnToToday": {
+    "description": "Tooltip for return to today button"
+  },
+  "calendarView": "日历视图",
+  "@calendarView": {
+    "description": "Tooltip for calendar button"
+  },
+  "cachedData": "缓存数据（{age}前）",
+  "@cachedData": {
+    "description": "Text shown for cached data with age",
+    "placeholders": {
+      "age": {
+        "type": "String",
+        "description": "Age of cached data"
+      }
+    }
+  },
+  "refreshing": "刷新中...",
+  "@refreshing": {
+    "description": "Text shown when refreshing data"
+  },
+  "theme": "主题",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "systemTheme": "系统",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "lightTheme": "浅色",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "深色",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "groupSelection": "选择组",
+  "@groupSelection": {
+    "description": "Group selection section title"
+  },
+  "searchGroups": "搜索组...",
+  "@searchGroups": {
+    "description": "Placeholder for group search field"
+  },
+  "noGroupsFound": "未找到组",
+  "@noGroupsFound": {
+    "description": "Message when no groups are found in search"
+  },
+  "filters": "过滤器",
+  "@filters": {
+    "description": "Filters section title"
+  },
+  "persons": "人员",
+  "@persons": {
+    "description": "Persons filter tab"
+  },
+  "locations": "地点",
+  "@locations": {
+    "description": "Locations filter tab"
+  },
+  "disciplines": "学科",
+  "@disciplines": {
+    "description": "Disciplines filter tab"
+  },
+  "resetAllFilters": "重置所有过滤器",
+  "@resetAllFilters": {
+    "description": "Reset all filters button text"
+  },
+  "apiEndpoint": "API 端点",
+  "@apiEndpoint": {
+    "description": "API endpoint setting label"
+  },
+  "enterApiEndpoint": "输入 API 端点...",
+  "@enterApiEndpoint": {
+    "description": "Placeholder for API endpoint input"
+  },
+  "save": "保存",
+  "@save": {
+    "description": "Save button text"
+  },
+  "testConnection": "测试连接",
+  "@testConnection": {
+    "description": "Test connection button text"
+  },
+  "connectionSuccessful": "连接成功！",
+  "@connectionSuccessful": {
+    "description": "Message when connection test is successful"
+  },
+  "connectionFailed": "连接失败",
+  "@connectionFailed": {
+    "description": "Message when connection test fails"
+  },
+  "language": "语言",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "russian": "Русский",
+  "@russian": {
+    "description": "Russian language option"
+  },
+  "chinese": "中文",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+  "lao": "ລາວ",
+  "@lao": {
+    "description": "Lao language option"
+  },
+  "ukrainian": "Українська",
+  "@ukrainian": {
+    "description": "Ukrainian language option"
+  },
+  "uzbek": "O'zbek",
+  "@uzbek": {
+    "description": "Uzbek language option"
+  },
+  "selectDate": "选择日期",
+  "@selectDate": {
+    "description": "Calendar date selection title"
+  },
+  "monday": "周一",
+  "@monday": {
+    "description": "Monday abbreviation"
+  },
+  "tuesday": "周二",
+  "@tuesday": {
+    "description": "Tuesday abbreviation"
+  },
+  "wednesday": "周三",
+  "@wednesday": {
+    "description": "Wednesday abbreviation"
+  },
+  "thursday": "周四",
+  "@thursday": {
+    "description": "Thursday abbreviation"
+  },
+  "friday": "周五",
+  "@friday": {
+    "description": "Friday abbreviation"
+  },
+  "saturday": "周六",
+  "@saturday": {
+    "description": "Saturday abbreviation"
+  },
+  "sunday": "周日",
+  "@sunday": {
+    "description": "Sunday abbreviation"
+  },
+  "searchGroupsPersonsLecturers": "搜索组、人员或讲师",
+  "@searchGroupsPersonsLecturers": {
+    "description": "Search placeholder text"
+  },
+  "searchGroupsPersonsLecturersHint": "搜索组、人员、讲师...",
+  "@searchGroupsPersonsLecturersHint": {
+    "description": "Search hint text"
+  },
+  "madeByTeam": "由 yashalava.sh 团队制作",
+  "@madeByTeam": {
+    "description": "Team credit text"
+  },
+  "about": "关于",
+  "@about": {
+    "description": "About section title"
+  },
+  "lecture": "讲座",
+  "@lecture": {
+    "description": "Lecture type label"
+  },
+  "seminar": "研讨会",
+  "@seminar": {
+    "description": "Seminar type label"
+  }
+}

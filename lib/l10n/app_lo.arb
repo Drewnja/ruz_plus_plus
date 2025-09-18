@@ -1,0 +1,213 @@
+{
+  "@@locale": "lo",
+  "appTitle": "RUZ++",
+  "@appTitle": {
+    "description": "Enchanced RUZ timetable with filters."
+  },
+  "timetable": "ຕາຕະລາງການສອນ",
+  "@timetable": {
+    "description": "Timetable tab name"
+  },
+  "settings": "ການຕັ້ງຄ່າ",
+  "@settings": {
+    "description": "Settings tab name"
+  },
+  "noGroupSelected": "ບໍ່ໄດ້ເລືອກກຸ່ມ",
+  "@noGroupSelected": {
+    "description": "Title shown when no group is selected"
+  },
+  "noGroupSelectedDescription": "ກະລຸນາເລືອກກຸ່ມໃນການຕັ້ງຄ່າເພື່ອເບິ່ງຕາຕະລາງການສອນຂອງທ່ານ",
+  "@noGroupSelectedDescription": {
+    "description": "Description shown when no group is selected"
+  },
+  "goToSettings": "ໄປການຕັ້ງຄ່າ",
+  "@goToSettings": {
+    "description": "Button text to navigate to settings"
+  },
+  "noLessonsForThisDay": "ບໍ່ມີບົດຮຽນສຳລັບວັນນີ້",
+  "@noLessonsForThisDay": {
+    "description": "Message shown when there are no lessons for the selected day"
+  },
+  "retry": "ລອງໃໝ່",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "returnToToday": "ກັບຄືນມາວັນນີ້",
+  "@returnToToday": {
+    "description": "Tooltip for return to today button"
+  },
+  "calendarView": "ມຸມມອງປະຕິທິນ",
+  "@calendarView": {
+    "description": "Tooltip for calendar button"
+  },
+  "cachedData": "ຂໍ້ມູນທີ່ເກັບໄວ້ ({age} ກ່ອນ)",
+  "@cachedData": {
+    "description": "Text shown for cached data with age",
+    "placeholders": {
+      "age": {
+        "type": "String",
+        "description": "Age of cached data"
+      }
+    }
+  },
+  "refreshing": "ກຳລັງໂຫຼດໃໝ່...",
+  "@refreshing": {
+    "description": "Text shown when refreshing data"
+  },
+  "theme": "ຮູບແບບ",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "systemTheme": "ລະບົບ",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "lightTheme": "ສີອ່ອນ",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "ສີເຂັ້ມ",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "groupSelection": "ການເລືອກກຸ່ມ",
+  "@groupSelection": {
+    "description": "Group selection section title"
+  },
+  "searchGroups": "ຄົ້ນຫາກຸ່ມ...",
+  "@searchGroups": {
+    "description": "Placeholder for group search field"
+  },
+  "noGroupsFound": "ບໍ່ພົບກຸ່ມ",
+  "@noGroupsFound": {
+    "description": "Message when no groups are found in search"
+  },
+  "filters": "ຕົວກອງ",
+  "@filters": {
+    "description": "Filters section title"
+  },
+  "persons": "ບຸກຄົນ",
+  "@persons": {
+    "description": "Persons filter tab"
+  },
+  "locations": "ສະຖານທີ່",
+  "@locations": {
+    "description": "Locations filter tab"
+  },
+  "disciplines": "ວິຊາການ",
+  "@disciplines": {
+    "description": "Disciplines filter tab"
+  },
+  "resetAllFilters": "ຣີເຊັດຕົວກອງທັງໝົດ",
+  "@resetAllFilters": {
+    "description": "Reset all filters button text"
+  },
+  "apiEndpoint": "ຈຸດສິ້ນສຸດ API",
+  "@apiEndpoint": {
+    "description": "API endpoint setting label"
+  },
+  "enterApiEndpoint": "ໃສ່ຈຸດສິ້ນສຸດ API...",
+  "@enterApiEndpoint": {
+    "description": "Placeholder for API endpoint input"
+  },
+  "save": "ບັນທຶກ",
+  "@save": {
+    "description": "Save button text"
+  },
+  "testConnection": "ທົດສອບການເຊື່ອມຕໍ່",
+  "@testConnection": {
+    "description": "Test connection button text"
+  },
+  "connectionSuccessful": "ເຊື່ອມຕໍ່ສຳເລັດ!",
+  "@connectionSuccessful": {
+    "description": "Message when connection test is successful"
+  },
+  "connectionFailed": "ເຊື່ອມຕໍ່ບໍ່ສຳເລັດ",
+  "@connectionFailed": {
+    "description": "Message when connection test fails"
+  },
+  "language": "ພາສາ",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "russian": "Русский",
+  "@russian": {
+    "description": "Russian language option"
+  },
+  "chinese": "中文",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+  "lao": "ລາວ",
+  "@lao": {
+    "description": "Lao language option"
+  },
+  "ukrainian": "Українська",
+  "@ukrainian": {
+    "description": "Ukrainian language option"
+  },
+  "uzbek": "O'zbek",
+  "@uzbek": {
+    "description": "Uzbek language option"
+  },
+  "selectDate": "ເລືອກວັນທີ",
+  "@selectDate": {
+    "description": "Calendar date selection title"
+  },
+  "monday": "ຈັນ",
+  "@monday": {
+    "description": "Monday abbreviation"
+  },
+  "tuesday": "ອັງຄານ",
+  "@tuesday": {
+    "description": "Tuesday abbreviation"
+  },
+  "wednesday": "ພຸດ",
+  "@wednesday": {
+    "description": "Wednesday abbreviation"
+  },
+  "thursday": "ພະຫັດ",
+  "@thursday": {
+    "description": "Thursday abbreviation"
+  },
+  "friday": "ສຸກ",
+  "@friday": {
+    "description": "Friday abbreviation"
+  },
+  "saturday": "ເສົາ",
+  "@saturday": {
+    "description": "Saturday abbreviation"
+  },
+  "sunday": "ອາທິດ",
+  "@sunday": {
+    "description": "Sunday abbreviation"
+  },
+  "searchGroupsPersonsLecturers": "ຄົ້ນຫາກຸ່ມ, ບຸກຄົນ, ຫຼື ອາຈານ",
+  "@searchGroupsPersonsLecturers": {
+    "description": "Search placeholder text"
+  },
+  "searchGroupsPersonsLecturersHint": "ຄົ້ນຫາກຸ່ມ, ບຸກຄົນ, ອາຈານ...",
+  "@searchGroupsPersonsLecturersHint": {
+    "description": "Search hint text"
+  },
+  "madeByTeam": "ສ້າງໂດຍທີມ yashalava.sh",
+  "@madeByTeam": {
+    "description": "Team credit text"
+  },
+  "about": "ກ່ຽວກັບ",
+  "@about": {
+    "description": "About section title"
+  },
+  "lecture": "ການບັນຍາຍ",
+  "@lecture": {
+    "description": "Lecture type label"
+  },
+  "seminar": "ການສົນທະນາ",
+  "@seminar": {
+    "description": "Seminar type label"
+  }
+}

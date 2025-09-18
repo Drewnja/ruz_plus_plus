@@ -4,6 +4,8 @@ import 'package:ruz_timetable/screens/group_selection_screen.dart';
 import 'package:ruz_timetable/screens/filters_screen.dart';
 import 'package:ruz_timetable/services/api_config_service.dart';
 import 'package:ruz_timetable/services/settings_service.dart';
+import 'package:ruz_timetable/services/language_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
@@ -12,12 +14,16 @@ class SettingsScreen extends StatefulWidget {
     required this.onThemeModeChanged,
     required this.selectedEntity,
     required this.onSelectedEntityChanged,
+    required this.locale,
+    required this.onLocaleChanged,
   });
 
   final ThemeMode themeMode;
   final ValueChanged<ThemeMode> onThemeModeChanged;
   final SelectedEntity? selectedEntity;
   final ValueChanged<SelectedEntity?> onSelectedEntityChanged;
+  final Locale locale;
+  final ValueChanged<Locale> onLocaleChanged;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -40,15 +46,16 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(l10n.settings),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const <Tab>[
-            Tab(text: 'Select Group/Person', icon: Icon(Icons.person)),
-            Tab(text: 'Filters', icon: Icon(Icons.tune)),
-            Tab(text: 'General', icon: Icon(Icons.settings)),
+          tabs: <Tab>[
+            Tab(text: l10n.groupSelection, icon: const Icon(Icons.person)),
+            Tab(text: l10n.filters, icon: const Icon(Icons.tune)),
+            Tab(text: l10n.settings, icon: const Icon(Icons.settings)),
           ],
         ),
       ),
@@ -63,6 +70,8 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
           _GeneralSettingsTab(
             themeMode: widget.themeMode,
             onThemeModeChanged: widget.onThemeModeChanged,
+            locale: widget.locale,
+            onLocaleChanged: widget.onLocaleChanged,
           ),
         ],
       ),
@@ -74,10 +83,14 @@ class _GeneralSettingsTab extends StatefulWidget {
   const _GeneralSettingsTab({
     required this.themeMode,
     required this.onThemeModeChanged,
+    required this.locale,
+    required this.onLocaleChanged,
   });
 
   final ThemeMode themeMode;
   final ValueChanged<ThemeMode> onThemeModeChanged;
+  final Locale locale;
+  final ValueChanged<Locale> onLocaleChanged;
 
   @override
   State<_GeneralSettingsTab> createState() => _GeneralSettingsTabState();
@@ -170,27 +183,63 @@ class _GeneralSettingsTabState extends State<_GeneralSettingsTab> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: <Widget>[
         // Theme Setting
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: SegmentedButton<ThemeMode>(
+              key: ValueKey<ThemeMode>(widget.themeMode),
+              segments: <ButtonSegment<ThemeMode>>[
+                ButtonSegment<ThemeMode>(
+                  value: ThemeMode.light, 
+                  label: Text(l10n.lightTheme, textAlign: TextAlign.center),
+                ),
+                ButtonSegment<ThemeMode>(
+                  value: ThemeMode.system, 
+                  label: Text(l10n.systemTheme, textAlign: TextAlign.center),
+                ),
+                ButtonSegment<ThemeMode>(
+                  value: ThemeMode.dark, 
+                  label: Text(l10n.darkTheme, textAlign: TextAlign.center),
+                ),
+              ],
+              selected: <ThemeMode>{widget.themeMode},
+              multiSelectionEnabled: false,
+              onSelectionChanged: (Set<ThemeMode> selection) {
+                if (selection.isNotEmpty) {
+                  widget.onThemeModeChanged(selection.first);
+                }
+              },
+            ),
+          ),
+        ),
+        
+        const Divider(),
+        
+        // Language Setting
         ListTile(
-          leading: const Icon(Icons.palette_outlined),
-          title: const Text('Theme'),
-          trailing: SegmentedButton<ThemeMode>(
-            key: ValueKey<ThemeMode>(widget.themeMode),
-            segments: const <ButtonSegment<ThemeMode>>[
-              ButtonSegment<ThemeMode>(value: ThemeMode.light, label: Text('Light'), icon: Icon(Icons.light_mode)),
-              ButtonSegment<ThemeMode>(value: ThemeMode.system, label: Text('System'), icon: Icon(Icons.brightness_auto)),
-              ButtonSegment<ThemeMode>(value: ThemeMode.dark, label: Text('Dark'), icon: Icon(Icons.dark_mode)),
-            ],
-            selected: <ThemeMode>{widget.themeMode},
-            multiSelectionEnabled: false,
-            onSelectionChanged: (Set<ThemeMode> selection) {
-              if (selection.isNotEmpty) {
-                widget.onThemeModeChanged(selection.first);
+          leading: const Icon(Icons.language),
+          title: Text(l10n.language),
+          trailing: DropdownButton<Locale>(
+            value: LanguageService.supportedLocales.firstWhere(
+              (locale) => locale.languageCode == widget.locale.languageCode,
+              orElse: () => LanguageService.supportedLocales.first,
+            ),
+            onChanged: (Locale? newLocale) {
+              if (newLocale != null) {
+                widget.onLocaleChanged(newLocale);
               }
             },
+            items: LanguageService.supportedLocales.map((Locale locale) {
+              return DropdownMenuItem<Locale>(
+                value: locale,
+                child: Text(LanguageService.getLanguageDisplayName(locale)),
+              );
+            }).toList(),
           ),
         ),
         
@@ -199,7 +248,7 @@ class _GeneralSettingsTabState extends State<_GeneralSettingsTab> {
         // Custom API Endpoint
         ListTile(
           leading: const Icon(Icons.api),
-          title: const Text('Custom API Endpoint'),
+          title: Text(l10n.apiEndpoint),
           subtitle: Text(_isUsingCustomEndpoint ? 'Using custom endpoint' : 'Using default endpoint'),
         ),
         Padding(
@@ -207,8 +256,8 @@ class _GeneralSettingsTabState extends State<_GeneralSettingsTab> {
           child: TextField(
             controller: _apiEndpointController,
             decoration: InputDecoration(
-              labelText: 'API Endpoint URL',
-              hintText: 'https://your-api-server.com/api',
+              labelText: l10n.apiEndpoint,
+              hintText: l10n.enterApiEndpoint,
               border: const OutlineInputBorder(),
               suffixIcon: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -222,7 +271,7 @@ class _GeneralSettingsTabState extends State<_GeneralSettingsTab> {
                   IconButton(
                     icon: const Icon(Icons.save),
                     onPressed: _saveApiEndpoint,
-                    tooltip: 'Save endpoint',
+                    tooltip: l10n.save,
                   ),
                 ],
               ),
@@ -234,10 +283,10 @@ class _GeneralSettingsTabState extends State<_GeneralSettingsTab> {
         const Divider(),
         
         // About Section
-        const ListTile(
-          leading: Icon(Icons.info_outline),
-          title: Text('About'),
-          subtitle: Text('RUZ++ v1.0.0'),
+        ListTile(
+          leading: const Icon(Icons.info_outline),
+          title: Text(l10n.about),
+          subtitle: Text('RUZ++ v1.2.1'),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -251,7 +300,7 @@ class _GeneralSettingsTabState extends State<_GeneralSettingsTab> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Made by yashalava.sh team:',
+                  l10n.madeByTeam,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

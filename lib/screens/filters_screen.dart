@@ -4,6 +4,7 @@ import 'package:ruz_timetable/services/api_service.dart';
 import 'package:ruz_timetable/models/api_models.dart';
 import 'package:ruz_timetable/services/settings_service.dart';
 import 'package:ruz_timetable/widgets/skeleton_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
@@ -25,6 +26,12 @@ class _FiltersScreenState extends State<FiltersScreen> with TickerProviderStateM
     _loadFilterOptions();
   }
 
+  // Helper method to get current group ID
+  static Future<String?> _getCurrentGroupId() async {
+    final selectedEntity = await SettingsService.getSelectedEntity();
+    return selectedEntity?.type == 1 ? selectedEntity?.id : null;
+  }
+
   Future<void> _resetAllFilters() async {
     developer.log('🔄 Resetting all filters to select all items');
     
@@ -40,7 +47,8 @@ class _FiltersScreenState extends State<FiltersScreen> with TickerProviderStateM
         selectedDisciplineIds: allDisciplineIds,
       );
       
-      await SettingsService.setFilterSettings(newSettings);
+      final groupId = await _FiltersScreenState._getCurrentGroupId();
+      await SettingsService.setFilterSettings(newSettings, groupId: groupId);
       developer.log('✅ All filters reset: ${allPersonIds.length} persons, ${allLocationIds.length} locations, ${allDisciplineIds.length} disciplines');
       
       // Trigger a rebuild of the entire screen to refresh all tabs
@@ -62,6 +70,7 @@ class _FiltersScreenState extends State<FiltersScreen> with TickerProviderStateM
       
       final groupId = selectedEntity?.type == 1 ? int.tryParse(selectedEntity!.id) : null;
       final eblanId = selectedEntity?.type == 2 ? int.tryParse(selectedEntity!.id) : null;
+      developer.log('🎯 Selected entity: ${selectedEntity?.name} (type: ${selectedEntity?.type}, id: ${selectedEntity?.id})');
       developer.log('🎯 Filter options request - Group ID: $groupId, Eblan ID: $eblanId');
       
       final options = await ApiService.getFilterOptions(
@@ -114,10 +123,10 @@ class _FiltersScreenState extends State<FiltersScreen> with TickerProviderStateM
             ),
             child: TabBar(
               controller: _tabController,
-              tabs: const <Tab>[
-                Tab(text: 'Persons'),
-                Tab(text: 'Locations'),
-                Tab(text: 'Disciplines'),
+              tabs: <Tab>[
+                Tab(text: AppLocalizations.of(context)!.persons),
+                Tab(text: AppLocalizations.of(context)!.locations),
+                Tab(text: AppLocalizations.of(context)!.disciplines),
               ],
             ),
           ),
@@ -180,10 +189,10 @@ class _FiltersScreenState extends State<FiltersScreen> with TickerProviderStateM
             ),
             child: TabBar(
               controller: _tabController,
-              tabs: const <Tab>[
-                Tab(text: 'Persons'),
-                Tab(text: 'Locations'),
-                Tab(text: 'Disciplines'),
+              tabs: <Tab>[
+                Tab(text: AppLocalizations.of(context)!.persons),
+                Tab(text: AppLocalizations.of(context)!.locations),
+                Tab(text: AppLocalizations.of(context)!.disciplines),
               ],
             ),
           ),
@@ -211,7 +220,7 @@ class _FiltersScreenState extends State<FiltersScreen> with TickerProviderStateM
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _resetAllFilters,
         icon: const Icon(Icons.refresh),
-        label: const Text('Reset All'),
+        label: Text(AppLocalizations.of(context)!.resetAllFilters),
         tooltip: 'Select all items in all categories',
       ),
     );
@@ -251,7 +260,8 @@ class _PersonsFilterTabState extends State<_PersonsFilterTab> {
 
   Future<void> _loadSavedSelections() async {
     developer.log('🎯 Loading saved person filter selections');
-    final filterSettings = await SettingsService.getFilterSettings();
+    final groupId = await _FiltersScreenState._getCurrentGroupId();
+    final filterSettings = await SettingsService.getFilterSettings(groupId: groupId);
     if (filterSettings.selectedPersonIds.isNotEmpty) {
       developer.log('🎯 Restoring ${filterSettings.selectedPersonIds.length} saved person selections: ${filterSettings.selectedPersonIds}');
       setState(() {
@@ -265,13 +275,14 @@ class _PersonsFilterTabState extends State<_PersonsFilterTab> {
 
   Future<void> _saveSelections() async {
     developer.log('🎯 Saving person filter selections: ${_selectedPersons.length} persons selected');
-    final currentSettings = await SettingsService.getFilterSettings();
+    final groupId = await _FiltersScreenState._getCurrentGroupId();
+    final currentSettings = await SettingsService.getFilterSettings(groupId: groupId);
     final newSettings = FilterSettings(
       selectedPersonIds: _selectedPersons,
       selectedLocationIds: currentSettings.selectedLocationIds,
       selectedDisciplineIds: currentSettings.selectedDisciplineIds,
     );
-    await SettingsService.setFilterSettings(newSettings);
+    await SettingsService.setFilterSettings(newSettings, groupId: groupId);
   }
 
   @override
@@ -376,7 +387,8 @@ class _LocationsFilterTabState extends State<_LocationsFilterTab> {
 
   Future<void> _loadSavedSelections() async {
     developer.log('🎯 Loading saved location filter selections');
-    final filterSettings = await SettingsService.getFilterSettings();
+    final groupId = await _FiltersScreenState._getCurrentGroupId();
+    final filterSettings = await SettingsService.getFilterSettings(groupId: groupId);
     if (filterSettings.selectedLocationIds.isNotEmpty) {
       developer.log('🎯 Restoring ${filterSettings.selectedLocationIds.length} saved location selections: ${filterSettings.selectedLocationIds}');
       setState(() {
@@ -390,13 +402,14 @@ class _LocationsFilterTabState extends State<_LocationsFilterTab> {
 
   Future<void> _saveSelections() async {
     developer.log('🎯 Saving location filter selections: ${_selectedLocations.length} locations selected');
-    final currentSettings = await SettingsService.getFilterSettings();
+    final groupId = await _FiltersScreenState._getCurrentGroupId();
+    final currentSettings = await SettingsService.getFilterSettings(groupId: groupId);
     final newSettings = FilterSettings(
       selectedPersonIds: currentSettings.selectedPersonIds,
       selectedLocationIds: _selectedLocations,
       selectedDisciplineIds: currentSettings.selectedDisciplineIds,
     );
-    await SettingsService.setFilterSettings(newSettings);
+    await SettingsService.setFilterSettings(newSettings, groupId: groupId);
   }
 
   @override
@@ -500,7 +513,8 @@ class _DisciplinesFilterTabState extends State<_DisciplinesFilterTab> {
 
   Future<void> _loadSavedSelections() async {
     developer.log('🎯 Loading saved discipline filter selections');
-    final filterSettings = await SettingsService.getFilterSettings();
+    final groupId = await _FiltersScreenState._getCurrentGroupId();
+    final filterSettings = await SettingsService.getFilterSettings(groupId: groupId);
     if (filterSettings.selectedDisciplineIds.isNotEmpty) {
       developer.log('🎯 Restoring ${filterSettings.selectedDisciplineIds.length} saved discipline selections: ${filterSettings.selectedDisciplineIds}');
       setState(() {
@@ -514,13 +528,14 @@ class _DisciplinesFilterTabState extends State<_DisciplinesFilterTab> {
 
   Future<void> _saveSelections() async {
     developer.log('🎯 Saving discipline filter selections: ${_selectedDisciplines.length} disciplines selected');
-    final currentSettings = await SettingsService.getFilterSettings();
+    final groupId = await _FiltersScreenState._getCurrentGroupId();
+    final currentSettings = await SettingsService.getFilterSettings(groupId: groupId);
     final newSettings = FilterSettings(
       selectedPersonIds: currentSettings.selectedPersonIds,
       selectedLocationIds: currentSettings.selectedLocationIds,
       selectedDisciplineIds: _selectedDisciplines,
     );
-    await SettingsService.setFilterSettings(newSettings);
+    await SettingsService.setFilterSettings(newSettings, groupId: groupId);
   }
 
   @override

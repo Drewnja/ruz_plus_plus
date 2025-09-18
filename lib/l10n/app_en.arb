@@ -1,0 +1,213 @@
+{
+  "@@locale": "en",
+  "appTitle": "RUZ++",
+  "@appTitle": {
+    "description": "Enchanced RUZ timetable with filters."
+  },
+  "timetable": "Timetable",
+  "@timetable": {
+    "description": "Timetable tab name"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings tab name"
+  },
+  "noGroupSelected": "No Group Selected",
+  "@noGroupSelected": {
+    "description": "Title shown when no group is selected"
+  },
+  "noGroupSelectedDescription": "Please select a group in Settings to view your timetable",
+  "@noGroupSelectedDescription": {
+    "description": "Description shown when no group is selected"
+  },
+  "goToSettings": "Go to Settings",
+  "@goToSettings": {
+    "description": "Button text to navigate to settings"
+  },
+  "noLessonsForThisDay": "No lessons for this day",
+  "@noLessonsForThisDay": {
+    "description": "Message shown when there are no lessons for the selected day"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "returnToToday": "Return to today",
+  "@returnToToday": {
+    "description": "Tooltip for return to today button"
+  },
+  "calendarView": "Calendar view",
+  "@calendarView": {
+    "description": "Tooltip for calendar button"
+  },
+  "cachedData": "Cached data ({age} old)",
+  "@cachedData": {
+    "description": "Text shown for cached data with age",
+    "placeholders": {
+      "age": {
+        "type": "String",
+        "description": "Age of cached data"
+      }
+    }
+  },
+  "refreshing": "Refreshing...",
+  "@refreshing": {
+    "description": "Text shown when refreshing data"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "systemTheme": "System",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "lightTheme": "Light",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "Dark",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "groupSelection": "Group Selection",
+  "@groupSelection": {
+    "description": "Group selection section title"
+  },
+  "searchGroups": "Search groups...",
+  "@searchGroups": {
+    "description": "Placeholder for group search field"
+  },
+  "noGroupsFound": "No groups found",
+  "@noGroupsFound": {
+    "description": "Message when no groups are found in search"
+  },
+  "filters": "Filters",
+  "@filters": {
+    "description": "Filters section title"
+  },
+  "persons": "Persons",
+  "@persons": {
+    "description": "Persons filter tab"
+  },
+  "locations": "Locations",
+  "@locations": {
+    "description": "Locations filter tab"
+  },
+  "disciplines": "Disciplines",
+  "@disciplines": {
+    "description": "Disciplines filter tab"
+  },
+  "resetAllFilters": "Reset All Filters",
+  "@resetAllFilters": {
+    "description": "Reset all filters button text"
+  },
+  "apiEndpoint": "API Endpoint",
+  "@apiEndpoint": {
+    "description": "API endpoint setting label"
+  },
+  "enterApiEndpoint": "Enter API endpoint...",
+  "@enterApiEndpoint": {
+    "description": "Placeholder for API endpoint input"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
+  "testConnection": "Test Connection",
+  "@testConnection": {
+    "description": "Test connection button text"
+  },
+  "connectionSuccessful": "Connection successful!",
+  "@connectionSuccessful": {
+    "description": "Message when connection test is successful"
+  },
+  "connectionFailed": "Connection failed",
+  "@connectionFailed": {
+    "description": "Message when connection test fails"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "russian": "Русский",
+  "@russian": {
+    "description": "Russian language option"
+  },
+  "chinese": "中文",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+  "lao": "ລາວ",
+  "@lao": {
+    "description": "Lao language option"
+  },
+  "ukrainian": "Українська",
+  "@ukrainian": {
+    "description": "Ukrainian language option"
+  },
+  "uzbek": "O'zbek",
+  "@uzbek": {
+    "description": "Uzbek language option"
+  },
+  "selectDate": "Select Date",
+  "@selectDate": {
+    "description": "Calendar date selection title"
+  },
+  "monday": "Mon",
+  "@monday": {
+    "description": "Monday abbreviation"
+  },
+  "tuesday": "Tue",
+  "@tuesday": {
+    "description": "Tuesday abbreviation"
+  },
+  "wednesday": "Wed",
+  "@wednesday": {
+    "description": "Wednesday abbreviation"
+  },
+  "thursday": "Thu",
+  "@thursday": {
+    "description": "Thursday abbreviation"
+  },
+  "friday": "Fri",
+  "@friday": {
+    "description": "Friday abbreviation"
+  },
+  "saturday": "Sat",
+  "@saturday": {
+    "description": "Saturday abbreviation"
+  },
+  "sunday": "Sun",
+  "@sunday": {
+    "description": "Sunday abbreviation"
+  },
+  "searchGroupsPersonsLecturers": "Search for groups, persons, or lecturers",
+  "@searchGroupsPersonsLecturers": {
+    "description": "Search placeholder text"
+  },
+  "searchGroupsPersonsLecturersHint": "Search groups, persons, lecturers...",
+  "@searchGroupsPersonsLecturersHint": {
+    "description": "Search hint text"
+  },
+  "madeByTeam": "Made by yashalava.sh team",
+  "@madeByTeam": {
+    "description": "Team credit text"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About section title"
+  },
+  "lecture": "Lecture",
+  "@lecture": {
+    "description": "Lecture type label"
+  },
+  "seminar": "Seminar",
+  "@seminar": {
+    "description": "Seminar type label"
+  }
+}

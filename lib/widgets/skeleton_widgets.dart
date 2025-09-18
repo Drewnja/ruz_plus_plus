@@ -50,6 +50,23 @@ class SkeletonWidgets {
                 ),
               ),
               const SizedBox(height: 6),
+              // Lecture/Seminar type
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  'Lecture',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.green.shade700,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
               // Lecturer
               Text(
                 'Dr. Smith Johnson Alexander',

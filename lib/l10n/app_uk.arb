@@ -1,0 +1,213 @@
+{
+  "@@locale": "uk",
+  "appTitle": "RUZ++",
+  "@appTitle": {
+    "description": "Enchanced RUZ timetable with filters."
+  },
+  "timetable": "Розклад",
+  "@timetable": {
+    "description": "Timetable tab name"
+  },
+  "settings": "Налаштування",
+  "@settings": {
+    "description": "Settings tab name"
+  },
+  "noGroupSelected": "Група не обрана",
+  "@noGroupSelected": {
+    "description": "Title shown when no group is selected"
+  },
+  "noGroupSelectedDescription": "Будь ласка, оберіть групу в Налаштуваннях для перегляду розкладу",
+  "@noGroupSelectedDescription": {
+    "description": "Description shown when no group is selected"
+  },
+  "goToSettings": "Перейти до Налаштувань",
+  "@goToSettings": {
+    "description": "Button text to navigate to settings"
+  },
+  "noLessonsForThisDay": "Немає занять на цей день",
+  "@noLessonsForThisDay": {
+    "description": "Message shown when there are no lessons for the selected day"
+  },
+  "retry": "Повторити",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "returnToToday": "Повернутися до сьогодні",
+  "@returnToToday": {
+    "description": "Tooltip for return to today button"
+  },
+  "calendarView": "Календарний вигляд",
+  "@calendarView": {
+    "description": "Tooltip for calendar button"
+  },
+  "cachedData": "Кешовані дані ({age} тому)",
+  "@cachedData": {
+    "description": "Text shown for cached data with age",
+    "placeholders": {
+      "age": {
+        "type": "String",
+        "description": "Age of cached data"
+      }
+    }
+  },
+  "refreshing": "Оновлення...",
+  "@refreshing": {
+    "description": "Text shown when refreshing data"
+  },
+  "theme": "Тема",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "systemTheme": "Системна",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "lightTheme": "Світла",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "Темна",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "groupSelection": "Вибір групи",
+  "@groupSelection": {
+    "description": "Group selection section title"
+  },
+  "searchGroups": "Пошук груп...",
+  "@searchGroups": {
+    "description": "Placeholder for group search field"
+  },
+  "noGroupsFound": "Групи не знайдені",
+  "@noGroupsFound": {
+    "description": "Message when no groups are found in search"
+  },
+  "filters": "Фільтри",
+  "@filters": {
+    "description": "Filters section title"
+  },
+  "persons": "Викладачі",
+  "@persons": {
+    "description": "Persons filter tab"
+  },
+  "locations": "Місця",
+  "@locations": {
+    "description": "Locations filter tab"
+  },
+  "disciplines": "Дисципліни",
+  "@disciplines": {
+    "description": "Disciplines filter tab"
+  },
+  "resetAllFilters": "Скинути всі фільтри",
+  "@resetAllFilters": {
+    "description": "Reset all filters button text"
+  },
+  "apiEndpoint": "API Endpoint",
+  "@apiEndpoint": {
+    "description": "API endpoint setting label"
+  },
+  "enterApiEndpoint": "Введіть API endpoint...",
+  "@enterApiEndpoint": {
+    "description": "Placeholder for API endpoint input"
+  },
+  "save": "Зберегти",
+  "@save": {
+    "description": "Save button text"
+  },
+  "testConnection": "Перевірити з'єднання",
+  "@testConnection": {
+    "description": "Test connection button text"
+  },
+  "connectionSuccessful": "З'єднання успішне!",
+  "@connectionSuccessful": {
+    "description": "Message when connection test is successful"
+  },
+  "connectionFailed": "З'єднання не вдалося",
+  "@connectionFailed": {
+    "description": "Message when connection test fails"
+  },
+  "language": "Мова",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "russian": "Русский",
+  "@russian": {
+    "description": "Russian language option"
+  },
+  "chinese": "中文",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+  "lao": "ລາວ",
+  "@lao": {
+    "description": "Lao language option"
+  },
+  "ukrainian": "Українська",
+  "@ukrainian": {
+    "description": "Ukrainian language option"
+  },
+  "uzbek": "O'zbek",
+  "@uzbek": {
+    "description": "Uzbek language option"
+  },
+  "selectDate": "Оберіть дату",
+  "@selectDate": {
+    "description": "Calendar date selection title"
+  },
+  "monday": "Пн",
+  "@monday": {
+    "description": "Monday abbreviation"
+  },
+  "tuesday": "Вт",
+  "@tuesday": {
+    "description": "Tuesday abbreviation"
+  },
+  "wednesday": "Ср",
+  "@wednesday": {
+    "description": "Wednesday abbreviation"
+  },
+  "thursday": "Чт",
+  "@thursday": {
+    "description": "Thursday abbreviation"
+  },
+  "friday": "Пт",
+  "@friday": {
+    "description": "Friday abbreviation"
+  },
+  "saturday": "Сб",
+  "@saturday": {
+    "description": "Saturday abbreviation"
+  },
+  "sunday": "Нд",
+  "@sunday": {
+    "description": "Sunday abbreviation"
+  },
+  "searchGroupsPersonsLecturers": "Пошук груп, викладачів або лекторів",
+  "@searchGroupsPersonsLecturers": {
+    "description": "Search placeholder text"
+  },
+  "searchGroupsPersonsLecturersHint": "Пошук груп, викладачів, лекторів...",
+  "@searchGroupsPersonsLecturersHint": {
+    "description": "Search hint text"
+  },
+  "madeByTeam": "Зроблено командою yashalava.sh",
+  "@madeByTeam": {
+    "description": "Team credit text"
+  },
+  "about": "Про додаток",
+  "@about": {
+    "description": "About section title"
+  },
+  "lecture": "Лекція",
+  "@lecture": {
+    "description": "Lecture type label"
+  },
+  "seminar": "Семінар",
+  "@seminar": {
+    "description": "Seminar type label"
+  }
+}

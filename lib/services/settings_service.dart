@@ -70,35 +70,37 @@ class SettingsService {
     await CacheService.clearAllLessonCaches();
   }
   
-  // Filter settings
-  static Future<FilterSettings> getFilterSettings() async {
-    developer.log('💾 Loading filter settings from local storage');
+  // Filter settings - now group-specific
+  static Future<FilterSettings> getFilterSettings({String? groupId}) async {
+    developer.log('💾 Loading filter settings from local storage for group: ${groupId ?? 'global'}');
     final prefs = await SharedPreferences.getInstance();
-    final filtersJson = prefs.getString(_selectedFiltersKey);
+    final filterKey = groupId != null ? 'filters_$groupId' : _selectedFiltersKey;
+    final filtersJson = prefs.getString(filterKey);
     if (filtersJson == null) {
-      developer.log('💾 No filter settings found, returning empty filters');
+      developer.log('💾 No filter settings found for group ${groupId ?? 'global'}, returning empty filters');
       return FilterSettings.empty();
     }
     
     try {
       final Map<String, dynamic> filtersMap = jsonDecode(filtersJson);
       final filters = FilterSettings.fromJson(filtersMap);
-      developer.log('💾 Loaded filter settings: ${filters.selectedPersonIds.length} persons, ${filters.selectedLocationIds.length} locations, ${filters.selectedDisciplineIds.length} disciplines');
+      developer.log('💾 Loaded filter settings for group ${groupId ?? 'global'}: ${filters.selectedPersonIds.length} persons, ${filters.selectedLocationIds.length} locations, ${filters.selectedDisciplineIds.length} disciplines');
       developer.log('💾 Filter details - Persons: ${filters.selectedPersonIds}, Locations: ${filters.selectedLocationIds}, Disciplines: ${filters.selectedDisciplineIds}');
       return filters;
     } catch (e) {
-      developer.log('❌ Failed to parse filter settings from local storage: $e');
+      developer.log('❌ Failed to parse filter settings from local storage for group ${groupId ?? 'global'}: $e');
       return FilterSettings.empty();
     }
   }
   
-  static Future<void> setFilterSettings(FilterSettings filters) async {
-    developer.log('💾 Saving filter settings to local storage: ${filters.selectedPersonIds.length} persons, ${filters.selectedLocationIds.length} locations, ${filters.selectedDisciplineIds.length} disciplines');
+  static Future<void> setFilterSettings(FilterSettings filters, {String? groupId}) async {
+    developer.log('💾 Saving filter settings to local storage for group: ${groupId ?? 'global'} - ${filters.selectedPersonIds.length} persons, ${filters.selectedLocationIds.length} locations, ${filters.selectedDisciplineIds.length} disciplines');
     developer.log('💾 Filter details - Persons: ${filters.selectedPersonIds}, Locations: ${filters.selectedLocationIds}, Disciplines: ${filters.selectedDisciplineIds}');
     final prefs = await SharedPreferences.getInstance();
+    final filterKey = groupId != null ? 'filters_$groupId' : _selectedFiltersKey;
     final jsonString = jsonEncode(filters.toJson());
-    await prefs.setString(_selectedFiltersKey, jsonString);
-    developer.log('✅ Filter settings saved successfully: $jsonString');
+    await prefs.setString(filterKey, jsonString);
+    developer.log('✅ Filter settings saved successfully for group ${groupId ?? 'global'}: $jsonString');
   }
 }
 

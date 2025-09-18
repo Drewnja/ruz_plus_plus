@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:ruz_timetable/widgets/timetable_day_list.dart';
 import 'package:ruz_timetable/widgets/week_day_selector.dart';
 import 'package:ruz_timetable/widgets/calendar_modal.dart';
+import 'package:ruz_timetable/services/settings_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TimetableScreen extends StatefulWidget {
-  const TimetableScreen({super.key, required this.selectedEntityName});
+  const TimetableScreen({super.key, required this.selectedEntityName, this.selectedEntity, this.onNavigateToSettings});
 
   final String selectedEntityName;
+  final SelectedEntity? selectedEntity;
+  final VoidCallback? onNavigateToSettings;
 
   @override
   State<TimetableScreen> createState() => _TimetableScreenState();
@@ -56,13 +60,14 @@ class _TimetableScreenState extends State<TimetableScreen> {
   @override
   Widget build(BuildContext context) {
     final DateTime selectedDay = _dayAt(_selectedDayIndex);
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.selectedEntityName),
         leading: IconButton(
           icon: const Icon(Icons.history),
           onPressed: _returnToToday,
-          tooltip: 'Return to today',
+          tooltip: l10n.returnToToday,
         ),
         actions: <Widget>[
           IconButton(
@@ -83,7 +88,7 @@ class _TimetableScreenState extends State<TimetableScreen> {
                 },
               );
             },
-            tooltip: 'Calendar view',
+            tooltip: l10n.calendarView,
           ),
         ],
       ),
@@ -101,6 +106,8 @@ class _TimetableScreenState extends State<TimetableScreen> {
           Expanded(
             child: TimetableDayList(
               day: selectedDay,
+              selectedEntity: widget.selectedEntity,
+              onNavigateToSettings: widget.onNavigateToSettings,
             ),
           ),
         ],

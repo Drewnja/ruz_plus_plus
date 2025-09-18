@@ -176,6 +176,7 @@ class DisciplineInfo {
 class Lesson {
   final String start;
   final String end;
+  final bool isLecture;
   final EblanInfo eblanInfo;
   final LocationInfo locationInfo;
   final DisciplineInfo disciplineInfo;
@@ -183,6 +184,7 @@ class Lesson {
   Lesson({
     required this.start,
     required this.end,
+    required this.isLecture,
     required this.eblanInfo,
     required this.locationInfo,
     required this.disciplineInfo,
@@ -192,6 +194,7 @@ class Lesson {
     return Lesson(
       start: json['start'] ?? '',
       end: json['end'] ?? '',
+      isLecture: json['isLecture'] ?? false,
       eblanInfo: EblanInfo.fromJson(json['eblanInfo'] ?? {}),
       locationInfo: LocationInfo.fromJson(json['locationInfo'] ?? {}),
       disciplineInfo: DisciplineInfo.fromJson(json['disciplineInfo'] ?? {}),
@@ -202,6 +205,7 @@ class Lesson {
     return {
       'start': start,
       'end': end,
+      'isLecture': isLecture,
       'eblanInfo': eblanInfo.toJson(),
       'locationInfo': locationInfo.toJson(),
       'disciplineInfo': disciplineInfo.toJson(),

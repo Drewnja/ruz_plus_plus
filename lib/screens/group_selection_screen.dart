@@ -5,6 +5,7 @@ import 'package:ruz_timetable/services/api_service.dart';
 import 'package:ruz_timetable/models/api_models.dart';
 import 'package:ruz_timetable/services/settings_service.dart';
 import 'package:ruz_timetable/widgets/skeleton_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroupSelectionScreen extends StatefulWidget {
   const GroupSelectionScreen({
@@ -81,11 +82,11 @@ class _GroupSelectionScreenState extends State<GroupSelectionScreen> {
   }
 
   void _performSearch(String query) async {
-    if (query.length < 2) {
+    if (query.length < 3) {
       setState(() {
         _searchResults.clear();
         _isSearching = false;
-        _errorMessage = 'Search string too short, minimum 2 characters';
+        _errorMessage = 'Search string too short, minimum 3 characters';
       });
       return;
     }
@@ -124,10 +125,10 @@ class _GroupSelectionScreenState extends State<GroupSelectionScreen> {
         children: <Widget>[
           TextField(
             controller: _searchController,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search groups, persons, lecturers…',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search),
+              hintText: AppLocalizations.of(context)!.searchGroupsPersonsLecturersHint,
+              border: const OutlineInputBorder(),
             ),
             // No onChanged - we use the controller listener for debounce
           ),
@@ -184,7 +185,7 @@ class _GroupSelectionScreenState extends State<GroupSelectionScreen> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Search for groups, persons, or lecturers',
+                      AppLocalizations.of(context)!.searchGroupsPersonsLecturers,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),

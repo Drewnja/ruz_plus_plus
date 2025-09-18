@@ -1,0 +1,213 @@
+{
+  "@@locale": "uz",
+  "appTitle": "RUZ++",
+  "@appTitle": {
+    "description": "Enchanced RUZ timetable with filters."
+  },
+  "timetable": "Dars jadvali",
+  "@timetable": {
+    "description": "Timetable tab name"
+  },
+  "settings": "Sozlamalar",
+  "@settings": {
+    "description": "Settings tab name"
+  },
+  "noGroupSelected": "Guruh tanlanmagan",
+  "@noGroupSelected": {
+    "description": "Title shown when no group is selected"
+  },
+  "noGroupSelectedDescription": "Dars jadvalingizni ko'rish uchun Sozlamalarda guruhni tanlang",
+  "@noGroupSelectedDescription": {
+    "description": "Description shown when no group is selected"
+  },
+  "goToSettings": "Sozlamalarga o'tish",
+  "@goToSettings": {
+    "description": "Button text to navigate to settings"
+  },
+  "noLessonsForThisDay": "Bugun dars yo'q",
+  "@noLessonsForThisDay": {
+    "description": "Message shown when there are no lessons for the selected day"
+  },
+  "retry": "Qayta urinish",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "returnToToday": "Bugunga qaytish",
+  "@returnToToday": {
+    "description": "Tooltip for return to today button"
+  },
+  "calendarView": "Kalendar ko'rinishi",
+  "@calendarView": {
+    "description": "Tooltip for calendar button"
+  },
+  "cachedData": "Saqlangan ma'lumotlar ({age} oldin)",
+  "@cachedData": {
+    "description": "Text shown for cached data with age",
+    "placeholders": {
+      "age": {
+        "type": "String",
+        "description": "Age of cached data"
+      }
+    }
+  },
+  "refreshing": "Yangilanmoqda...",
+  "@refreshing": {
+    "description": "Text shown when refreshing data"
+  },
+  "theme": "Mavzu",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "systemTheme": "Tizim",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "lightTheme": "Och",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "Qorong'i",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "groupSelection": "Guruh tanlash",
+  "@groupSelection": {
+    "description": "Group selection section title"
+  },
+  "searchGroups": "Guruhlarni qidirish...",
+  "@searchGroups": {
+    "description": "Placeholder for group search field"
+  },
+  "noGroupsFound": "Guruhlar topilmadi",
+  "@noGroupsFound": {
+    "description": "Message when no groups are found in search"
+  },
+  "filters": "Filtrlar",
+  "@filters": {
+    "description": "Filters section title"
+  },
+  "persons": "O'qituvchilar",
+  "@persons": {
+    "description": "Persons filter tab"
+  },
+  "locations": "Joylar",
+  "@locations": {
+    "description": "Locations filter tab"
+  },
+  "disciplines": "Fanlar",
+  "@disciplines": {
+    "description": "Disciplines filter tab"
+  },
+  "resetAllFilters": "Barcha filtrlarni tiklash",
+  "@resetAllFilters": {
+    "description": "Reset all filters button text"
+  },
+  "apiEndpoint": "API Endpoint",
+  "@apiEndpoint": {
+    "description": "API endpoint setting label"
+  },
+  "enterApiEndpoint": "API endpoint kiriting...",
+  "@enterApiEndpoint": {
+    "description": "Placeholder for API endpoint input"
+  },
+  "save": "Saqlash",
+  "@save": {
+    "description": "Save button text"
+  },
+  "testConnection": "Ulanishni tekshirish",
+  "@testConnection": {
+    "description": "Test connection button text"
+  },
+  "connectionSuccessful": "Ulanish muvaffaqiyatli!",
+  "@connectionSuccessful": {
+    "description": "Message when connection test is successful"
+  },
+  "connectionFailed": "Ulanish muvaffaqiyatsiz",
+  "@connectionFailed": {
+    "description": "Message when connection test fails"
+  },
+  "language": "Til",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "russian": "Русский",
+  "@russian": {
+    "description": "Russian language option"
+  },
+  "chinese": "中文",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+  "lao": "ລາວ",
+  "@lao": {
+    "description": "Lao language option"
+  },
+  "ukrainian": "Українська",
+  "@ukrainian": {
+    "description": "Ukrainian language option"
+  },
+  "uzbek": "O'zbek",
+  "@uzbek": {
+    "description": "Uzbek language option"
+  },
+  "selectDate": "Sana tanlang",
+  "@selectDate": {
+    "description": "Calendar date selection title"
+  },
+  "monday": "Dush",
+  "@monday": {
+    "description": "Monday abbreviation"
+  },
+  "tuesday": "Sesh",
+  "@tuesday": {
+    "description": "Tuesday abbreviation"
+  },
+  "wednesday": "Chor",
+  "@wednesday": {
+    "description": "Wednesday abbreviation"
+  },
+  "thursday": "Pay",
+  "@thursday": {
+    "description": "Thursday abbreviation"
+  },
+  "friday": "Jum",
+  "@friday": {
+    "description": "Friday abbreviation"
+  },
+  "saturday": "Shan",
+  "@saturday": {
+    "description": "Saturday abbreviation"
+  },
+  "sunday": "Yak",
+  "@sunday": {
+    "description": "Sunday abbreviation"
+  },
+  "searchGroupsPersonsLecturers": "Guruhlar, o'qituvchilar yoki lektorlarni qidirish",
+  "@searchGroupsPersonsLecturers": {
+    "description": "Search placeholder text"
+  },
+  "searchGroupsPersonsLecturersHint": "Guruhlar, o'qituvchilar, lektorlar qidirish...",
+  "@searchGroupsPersonsLecturersHint": {
+    "description": "Search hint text"
+  },
+  "madeByTeam": "yashalava.sh jamoasi tomonidan yaratilgan",
+  "@madeByTeam": {
+    "description": "Team credit text"
+  },
+  "about": "Ilova haqida",
+  "@about": {
+    "description": "About section title"
+  },
+  "lecture": "Ma'ruza",
+  "@lecture": {
+    "description": "Lecture type label"
+  },
+  "seminar": "Seminar",
+  "@seminar": {
+    "description": "Seminar type label"
+  }
+}

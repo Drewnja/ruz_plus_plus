@@ -76,6 +76,7 @@ class ApiService {
     
     developer.log('🎯 API Request: POST $url');
     developer.log('📤 Request body: ${jsonEncode(requestBody)}');
+    developer.log('🎯 Filter options parameters - Group: $group, Eblan: $eblan');
     
     try {
       final response = await http.post(

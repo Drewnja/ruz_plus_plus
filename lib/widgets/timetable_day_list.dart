@@ -5,6 +5,7 @@ import 'package:ruz_timetable/models/api_models.dart';
 import 'package:ruz_timetable/services/settings_service.dart';
 import 'package:ruz_timetable/services/cache_service.dart';
 import 'package:ruz_timetable/widgets/skeleton_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // Function to get themed icons for different disciplines
 IconData _getDisciplineIcon(int disciplineId) {
@@ -34,9 +35,11 @@ IconData _getDisciplineIcon(int disciplineId) {
 }
 
 class TimetableDayList extends StatefulWidget {
-  const TimetableDayList({super.key, required this.day});
+  const TimetableDayList({super.key, required this.day, this.selectedEntity, this.onNavigateToSettings});
 
   final DateTime day;
+  final SelectedEntity? selectedEntity;
+  final VoidCallback? onNavigateToSettings;
 
   @override
   State<TimetableDayList> createState() => _TimetableDayListState();
@@ -94,21 +97,52 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
       
       // Load selected entity and filter settings from local storage
       final selectedEntity = await SettingsService.getSelectedEntity();
-      final filterSettings = await SettingsService.getFilterSettings();
+      
+      // If no group is selected, show info screen immediately without API calls
+      if (selectedEntity == null) {
+        developer.log('📭 No group selected, showing info screen without API calls');
+        setState(() {
+          _lessons = [];
+          _isLoading = false;
+          _isLoadingFromCache = false;
+          _errorMessage = null;
+        });
+        return;
+      }
+      
+      final filterSettings = await SettingsService.getFilterSettings(
+        groupId: selectedEntity.type == 1 ? selectedEntity.id : null,
+      );
       
       // Prepare filter IDs for caching and API call
       final disciplineIds = filterSettings.selectedDisciplineIds.isNotEmpty ? filterSettings.disciplineIdsAsInts : null;
       final locationIds = filterSettings.selectedLocationIds.isNotEmpty ? filterSettings.locationIdsAsInts : null;
-      final eblanIds = filterSettings.selectedPersonIds.isNotEmpty ? filterSettings.personIdsAsInts : null;
       
-      developer.log('🎯 Selected entity: ${selectedEntity?.name ?? 'None'} (type: ${selectedEntity?.type}, id: ${selectedEntity?.id})');
+      // For eblanIds, include both filter selections AND the selected person if entity type is 2 (lecturer)
+      List<int>? eblanIds;
+      if (filterSettings.selectedPersonIds.isNotEmpty) {
+        eblanIds = filterSettings.personIdsAsInts;
+      }
+      
+      // If selected entity is a person (type 2), add their ID to eblanIds
+      if (selectedEntity.type == 2) {
+        final personId = int.tryParse(selectedEntity.id);
+        if (personId != null) {
+          eblanIds = eblanIds ?? [];
+          if (!eblanIds.contains(personId)) {
+            eblanIds.add(personId);
+          }
+        }
+      }
+      
+      developer.log('🎯 Selected entity: ${selectedEntity.name} (type: ${selectedEntity.type}, id: ${selectedEntity.id})');
       developer.log('🎯 Applying filters - Disciplines: $disciplineIds, Locations: $locationIds, Persons: $eblanIds');
       
       // Try to get cached data first
       final cachedLessons = await CacheService.getCachedLessons(
         widget.day,
-        selectedEntityId: selectedEntity?.id,
-        selectedEntityType: selectedEntity?.type,
+        selectedEntityId: selectedEntity.id,
+        selectedEntityType: selectedEntity.type,
         disciplineIds: disciplineIds,
         locationIds: locationIds,
         eblanIds: eblanIds,
@@ -127,7 +161,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
         // If cache is stale, refresh in background
         if (cachedLessons.isStale) {
           developer.log('🔄 Cache is stale, refreshing in background');
-          _refreshInBackground(selectedEntity?.id, selectedEntity?.type, disciplineIds, locationIds, eblanIds);
+          _refreshInBackground(selectedEntity.id, selectedEntity.type, disciplineIds, locationIds, eblanIds);
         }
         return;
       }
@@ -139,7 +173,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
         _errorMessage = null;
       });
 
-      await _loadFromApi(selectedEntity?.id, selectedEntity?.type, disciplineIds, locationIds, eblanIds);
+      await _loadFromApi(selectedEntity.id, selectedEntity.type, disciplineIds, locationIds, eblanIds);
     } catch (e) {
       developer.log('❌ Failed to load lessons: $e');
       if (mounted) {
@@ -277,7 +311,49 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: _loadLessons,
-                child: const Text('Retry'),
+                child: Text(AppLocalizations.of(context)!.retry),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Show different content based on whether a group is selected
+    if (widget.selectedEntity == null) {
+      final l10n = AppLocalizations.of(context)!;
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.group_add,
+                size: 64,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                l10n.noGroupSelected,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.noGroupSelectedDescription,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              FilledButton.icon(
+                onPressed: widget.onNavigateToSettings,
+                icon: const Icon(Icons.settings),
+                label: Text(l10n.goToSettings),
               ),
             ],
           ),
@@ -286,6 +362,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
     }
 
     if (_lessons.isEmpty) {
+      final l10n = AppLocalizations.of(context)!;
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(32.0),
@@ -299,7 +376,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
               ),
               const SizedBox(height: 16),
               Text(
-                'No lessons for this day',
+                l10n.noLessonsForThisDay,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
@@ -326,7 +403,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Cached data (${_cachedData?.age.inMinutes ?? 0}m old)',
+                    AppLocalizations.of(context)!.cachedData('${_cachedData?.age.inMinutes ?? 0}m'),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -344,7 +421,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Refreshing...',
+                    AppLocalizations.of(context)!.refreshing,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -368,7 +445,7 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      // TODO: Handle lesson tap
+                      
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -409,6 +486,29 @@ class _TimetableDayListState extends State<TimetableDayList> with TickerProvider
                             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          
+                          // Lecture/Seminar type
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: lesson.isLecture 
+                                  ? Colors.green.withOpacity(0.2)
+                                  : Colors.yellow.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              lesson.isLecture 
+                                  ? AppLocalizations.of(context)!.lecture
+                                  : AppLocalizations.of(context)!.seminar,
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: lesson.isLecture 
+                                    ? Colors.green.shade700
+                                    : Colors.yellow.shade700,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 6),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CalendarModal extends StatefulWidget {
   const CalendarModal({
@@ -45,6 +46,7 @@ class _CalendarModalState extends State<CalendarModal> with TickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
@@ -168,7 +170,7 @@ class _CalendarModalState extends State<CalendarModal> with TickerProviderStateM
                           child: Row(
                             children: [
                               Text(
-                                'Select Date',
+                                l10n.selectDate,
                                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                   color: Theme.of(context).colorScheme.onSurface,
                                 ),
